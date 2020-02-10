@@ -1,9 +1,12 @@
 #include "Solver.h"
 #include <iostream>
 
-Solver& Solver::get( ) {
-    static Solver solver;
-    return solver;
+Solver::Solver( ) {
+    std::cout << "I have born!\n";
+}
+
+Solver::~Solver( ) {
+    std::cout << "I am dead now :(\n";
 }
 
 void Solver::readDataFromFile( std::ifstream& file ) {
@@ -16,12 +19,4 @@ void Solver::writeDataToFile( std::ofstream& file ) {
 
 void Solver::solve( ) {
     std::cout << "I am solving!\n";
-}
-
-Solver::~Solver() {
-    std::cout << "I am dead now :(\n";
-}
-
-Solver::Solver( ) {
-    std::cout << "I have born!\n";
 }

@@ -23,17 +23,18 @@ int main( ) {
     std::ofstream fout;
 
     for ( const auto& fileName : filesArray ) {
+        Solver solver;
         // Get data from input file
         fin = openFin( fileName );
-        Solver::get( ).readDataFromFile( fin );
+        solver.readDataFromFile( fin );
         fin.close( );
 
         // Solve
-        Solver::get( ).solve( );
+        solver.solve( );
 
         // Print data  
         fout = openFout( fileName );
-        Solver::get( ).writeDataToFile( fout );
+        solver.writeDataToFile( fout );
         fout.close( );
     }
     

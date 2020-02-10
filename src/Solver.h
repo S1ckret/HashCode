@@ -1,16 +1,22 @@
 #pragma once
 #include <fstream>
 
-// Singleton
 class Solver {
 public:
-    static Solver& get( );
+    Solver( );
+    ~Solver();
 
     void readDataFromFile( std::ifstream& file );
     void writeDataToFile( std::ofstream& file );
-    void solve();
-
-    ~Solver();
+    void solve();    
 private:
-    Solver( );
+    unsigned nMaxSlices;
+    unsigned nTypes;
+
+    unsigned * slices;
+
+    unsigned slicesSum;
+
+// Pizza to order
+    std::vector<unsigned> pizzas;
 };
