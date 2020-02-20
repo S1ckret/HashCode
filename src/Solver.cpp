@@ -34,7 +34,18 @@ void Solver::readDataFromFile( std::ifstream& file ) {
    }
 // Read library info
    for ( ui i = 0; i < librariesN; ++i ) {
+       Library lib;
 
+    // Library parameters
+       file >> lib.BooksN;
+       file >> lib.SignUpTime;
+       file >> lib.BooksPerDay;
+
+        for ( ui j = 0; j < lib.BooksN; ++j ) {
+            ui bookID = 0;
+            file >> bookID;
+            lib.booksID.push_back( bookID );
+        }
    }
 
 }
