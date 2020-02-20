@@ -32,4 +32,15 @@ private:
     };
 
     vector<Library> libraries;    
+
+    ui librariesToSignUpN;
+
+    struct LibraryToSignUp {
+        ui ID;
+        ui BooksN;
+        vector<ui> BooksToScan;
+    };
+    
+    vector<LibraryToSignUp> librariesToSignUp;    
+
 };
