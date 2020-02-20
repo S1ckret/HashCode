@@ -13,6 +13,7 @@ Solver::Solver( )
     : booksN( 0 )
     , librariesN( 0 )
     , daysN( 0 )
+    , librariesToSignUpN( 0 )
 {
 
 }
@@ -40,18 +41,28 @@ void Solver::readDataFromFile( std::ifstream& file ) {
        file >> lib.BooksN;
        file >> lib.SignUpTime;
        file >> lib.BooksPerDay;
-
+    // Books 
         for ( ui j = 0; j < lib.BooksN; ++j ) {
             ui bookID = 0;
             file >> bookID;
             lib.booksID.push_back( bookID );
         }
    }
-
 }
 
 void Solver::writeDataToFile( std::ofstream& file ) {
-   
+    WRITE << librariesN << "\n";
+
+    for ( const auto& lib : librariesToSignUp ) {
+        WRITE << lib.ID << " ";
+        WRITE << lib.BooksN << "\n";
+
+        for ( ui bookID : lib.BooksToScan ) {
+            WRITE << bookID << " ";
+        }
+        WRITE << "\n";
+    }
+
 }
 
 void Solver::solve( ) { 
