@@ -6,7 +6,7 @@
 
 const std::string inputResPath = "res/in/";
 const std::string outputResPath = "res/out/";
-const std::string inputFileExtension = ".in";
+const std::string inputFileExtension = ".txt";
 const std::string outputFileExtension = ".out";
 
 std::ifstream openFin( const std::string & fileName );
@@ -14,10 +14,11 @@ std::ofstream openFout( const std::string & fileName );
 
 int main( ) {
     std::string filesArray[] = { "a_example"
-                               , "b_small"
-                               , "c_medium"
-                               , "d_quite_big"
-                               , "e_also_big" };
+                               , "b_read_on"
+                               , "c_incunabula"
+                               , "d_tough_choices"
+                               , "e_so_many_books"
+                               , "f_libraries_of_the_world" };
 
     std::ifstream fin;
     std::ofstream fout;
