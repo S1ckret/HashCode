@@ -75,24 +75,8 @@ void Solver::writeDataToFile( std::ofstream& file ) {
 void Solver::solve( ) {
 // Ratio = TimeToSignUp / BooksN
     sort( libraries.begin( ), libraries.end( ), 
-    []( const Library& lhs, const Library& rhs ){
-
-        float lhs_ratio = 0.f;
-        if ( lhs.BooksN ) {
-            lhs_ratio = static_cast<float>( lhs.SignUpTime ) / static_cast<float>( lhs.BooksN );
-        }
-        else {
-            lhs_ratio = 0.f;
-        }
-        
-        float rhs_ratio = 0.f;
-        if ( rhs.BooksN ) {
-            rhs_ratio = static_cast<float>( rhs.SignUpTime ) / static_cast<float>( rhs.BooksN );
-        }
-        else {
-            rhs_ratio = 0.f;
-        }
-        return lhs_ratio > rhs_ratio;
+    []( const Library& lhs, const Library& rhs ) {
+        return lhs.BooksN > lhs.BooksN;
     } );
 // Counts by days to sign up.
 // Libraries that will be signed up.
@@ -125,7 +109,7 @@ void Solver::solve( ) {
         libToSignUp.ID = lib.ID;
 
         // TODO: Test with sort
-
+        
         // Add books.
         // Strategy: Pick unique books. 
         ui booksThatOrdered = 0;
