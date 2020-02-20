@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -19,8 +20,9 @@ private:
     unsigned booksN;
     unsigned librariesN;
     unsigned daysN;
-    
-    std::vector<unsigned> bookScore;
+
+    // Key: ID, Value: Score
+    map<ui, ui> bookScore;
 
     struct Library
     {

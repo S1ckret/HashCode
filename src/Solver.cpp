@@ -35,7 +35,7 @@ void Solver::readDataFromFile( std::ifstream& file ) {
    for ( ui i = 0; i < booksN; ++i ) {
        ui score = 0;
        file >> score;
-       bookScore.push_back( score );
+       bookScore.insert( { i, score } );
    }
 // Read library info
    for ( ui i = 0; i < librariesN; ++i ) {
@@ -58,7 +58,7 @@ void Solver::readDataFromFile( std::ifstream& file ) {
 }
 
 void Solver::writeDataToFile( std::ofstream& file ) {
-    WRITE << librariesN << "\n";
+    WRITE << librariesToSignUpN << "\n";
 
     for ( const auto& lib : librariesToSignUp ) {
         WRITE << lib.ID << " ";
@@ -123,15 +123,26 @@ void Solver::solve( ) {
         // Library parameters
         LibraryToSignUp libToSignUp;
         libToSignUp.ID = lib.ID;
-        libToSignUp.BooksN = booksToOrderN;
+
+        // TODO: Test with sort
 
         // Add books.
-        // Strategy: Liniar. 
+        // Strategy: Pick unique books. 
+        ui booksThatOrdered = 0;
         for ( ui i = 0; i < booksToOrderN; ++i ) {
-            libToSignUp.BooksToScan.push_back( lib.booksID[i] );
+            auto it = bookScore.find( lib.booksID[i] );
+            if ( it != bookScore.end( ) ) {
+                libToSignUp.BooksToScan.push_back( lib.booksID[i] );
+                booksThatOrdered++;
+                bookScore.erase( it );
+            }
         }
+        libToSignUp.BooksN = booksThatOrdered;
 
         // Add lib
-        librariesToSignUp.push_back( libToSignUp );
+        if ( libToSignUp.BooksN ) {
+            librariesToSignUp.push_back( libToSignUp );
+            librariesToSignUpN++;
+        }
     }
 }
