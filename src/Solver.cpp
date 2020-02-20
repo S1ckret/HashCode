@@ -1,6 +1,8 @@
 #include "Solver.h"
 #include <iostream>
 
+#include <algorithm>
+
 #ifdef NDEBUG
     #define WRITE file
 #endif
@@ -47,6 +49,9 @@ void Solver::readDataFromFile( std::ifstream& file ) {
             file >> bookID;
             lib.booksID.push_back( bookID );
         }
+
+        lib.ID = i;
+        libraries.push_back( lib );
    }
 }
 
@@ -65,6 +70,5 @@ void Solver::writeDataToFile( std::ofstream& file ) {
 
 }
 
-void Solver::solve( ) { 
-   
+void Solver::solve( ) {
 }

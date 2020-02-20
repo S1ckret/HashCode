@@ -24,6 +24,7 @@ private:
 
     struct Library
     {
+        ui ID;
         unsigned BooksN;
         unsigned SignUpTime;
         unsigned BooksPerDay;
