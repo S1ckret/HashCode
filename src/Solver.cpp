@@ -3,6 +3,8 @@
 
 #include <algorithm>
 
+#define NDEBUG
+
 #ifdef NDEBUG
     #define WRITE file
 #endif
@@ -71,10 +73,26 @@ void Solver::writeDataToFile( std::ofstream& file ) {
 }
 
 void Solver::solve( ) {
-// The more books, better for us.
+// Ratio = TimeToSignUp / BooksN
     sort( libraries.begin( ), libraries.end( ), 
     []( const Library& lhs, const Library& rhs ){
-        return lhs.BooksN > rhs.BooksN;
+
+        float lhs_ratio = 0.f;
+        if ( lhs.BooksN ) {
+            lhs_ratio = static_cast<float>( lhs.SignUpTime ) / static_cast<float>( lhs.BooksN );
+        }
+        else {
+            lhs_ratio = 0.f;
+        }
+        
+        float rhs_ratio = 0.f;
+        if ( rhs.BooksN ) {
+            rhs_ratio = static_cast<float>( rhs.SignUpTime ) / static_cast<float>( rhs.BooksN );
+        }
+        else {
+            rhs_ratio = 0.f;
+        }
+        return lhs_ratio > rhs_ratio;
     } );
 // Counts by days to sign up.
 // Libraries that will be signed up.
